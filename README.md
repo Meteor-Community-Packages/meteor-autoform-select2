@@ -5,7 +5,7 @@ An add-on Meteor package for [aldeed:autoform](https://github.com/aldeed/meteor-
 
 ## Prerequisites
 
-Bootstrap and the plugin library must be installed separately.
+The plugin library must be installed separately.
 
 In a Meteor app directory, enter:
 
