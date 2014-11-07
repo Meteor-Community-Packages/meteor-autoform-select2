@@ -94,7 +94,7 @@ Template.afSelect2.helpers({
 
 Template.afSelect2.rendered = function () {
   // instanciate select2
-  $this.$('select').select2(this.data.atts.select2Options || {});
+  this.$('select').select2(this.data.atts.select2Options || {});
 };
 
 Template.afSelect2.destroyed = function () {
