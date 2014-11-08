@@ -9,16 +9,22 @@ The plugin library must be installed separately.
 
 In a Meteor app directory, enter:
 
-```
+```bash
 $ meteor add natestrauser:select2
 $ meteor add aldeed:autoform@4.0.0-rc9
+```
+
+If using with bootstrap, you'll probably also want to:
+
+```bash
+$ meteor add zimme:select2-bootstrap3-css
 ```
 
 ## Installation
 
 In a Meteor app directory, enter:
 
-```
+```bash
 $ meteor add aldeed:autoform-select2
 ```
 
@@ -57,6 +63,10 @@ To provide select2 options, set a `select2Options` attribute equal to a helper t
 ## Demo
 
 [Live](http://autoform.meteor.com/types)
+
+## Limitations
+
+Currently only `select` element features are supported. If you would like to add support for hidden `input` element features, please do so and submit a pull request.
 
 ## Contributing
 
