@@ -11,7 +11,7 @@ In a Meteor app directory, enter:
 
 ```bash
 $ meteor add natestrauser:select2
-$ meteor add aldeed:autoform@4.0.0-rc9
+$ meteor add aldeed:autoform
 ```
 
 If using with bootstrap, you'll probably also want to:
