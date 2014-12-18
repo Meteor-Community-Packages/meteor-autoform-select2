@@ -20,11 +20,7 @@ Template["afSelect2_bootstrap3"].helpers({
 
 Template["afSelect2_bootstrap3"].rendered = function () {
   // instanciate select2
-  var select2Options = this.data.atts.select2Options || {};
-  if (!select2Options.width) {
-    select2Options.width = "element";
-  }
-  this.$('select').select2(select2Options);
+  this.$('select').select2(this.data.atts.select2Options || {});
 };
 
 Template["afSelect2_bootstrap3"].destroyed = function () {
