@@ -70,7 +70,9 @@ AutoForm.addInputType("select2", {
         // #each uses to track unique list items when adding and removing them
         // See https://github.com/meteor/meteor/issues/2174
         _id: opt.value,
-        selected: (opt.value === context.value),
+        selected: (_.isArray(context.value) ?
+                   _.contains(context.value, opt.value) :
+                   opt.value === context.value),
         atts: itemAtts
       });
     });
