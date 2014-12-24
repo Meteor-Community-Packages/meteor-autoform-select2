@@ -101,6 +101,6 @@ Template.afSelect2.destroyed = function () {
   this.$('select').select2('destroy');
 };
 
-isArray = Array.isArray || function(obj) {
+var isArray = Array.isArray || function(obj) {
   return Object.prototype.toString.call(obj) === '[object Array]';
 };
