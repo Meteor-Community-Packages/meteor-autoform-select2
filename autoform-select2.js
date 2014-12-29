@@ -6,7 +6,7 @@ AutoForm.addInputType("select2", {
   valueConverters: {
     "number": AutoForm.Utility.stringToNumber,
     "numberArray": function (val) {
-      if (isArray(val)) {
+      if (_.isArray(val)) {
         return _.map(val, function (item) {
           item = $.trim(item);
           return AutoForm.Utility.stringToNumber(item);
@@ -16,7 +16,7 @@ AutoForm.addInputType("select2", {
     },
     "boolean": AutoForm.Utility.stringToBool,
     "booleanArray": function (val) {
-      if (isArray(val)) {
+      if (_.isArray(val)) {
         return _.map(val, function (item) {
           item = $.trim(item);
           return AutoForm.Utility.stringToBool(item);
@@ -26,7 +26,7 @@ AutoForm.addInputType("select2", {
     },
     "date": AutoForm.Utility.stringToDate,
     "dateArray": function (val) {
-      if (isArray(val)) {
+      if (_.isArray(val)) {
         return _.map(val, function (item) {
           item = $.trim(item);
           return AutoForm.Utility.stringToDate(item);
@@ -101,8 +101,4 @@ Template.afSelect2.rendered = function () {
 
 Template.afSelect2.destroyed = function () {
   this.$('select').select2('destroy');
-};
-
-isArray = Array.isArray || function(obj) {
-  return Object.prototype.toString.call(obj) === '[object Array]';
 };
