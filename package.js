@@ -1,7 +1,7 @@
 Package.describe({
   name: 'aldeed:autoform-select2',
   summary: 'Custom select2 input type for AutoForm',
-  version: '1.0.2',
+  version: '1.0.3',
   git: 'https://github.com/aldeed/meteor-autoform-select2.git'
 });
 

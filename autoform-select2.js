@@ -1,3 +1,5 @@
+/* global AutoForm, _, $, Template */
+
 AutoForm.addInputType("select2", {
   template: "afSelect2",
   valueOut: function () {
@@ -83,7 +85,7 @@ AutoForm.addInputType("select2", {
 
 Template.afSelect2.helpers({
   optionAtts: function afSelectOptionAtts() {
-    var item = this
+    var item = this;
     var atts = {
       value: item.value
     };

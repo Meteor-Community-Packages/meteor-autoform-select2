@@ -1,6 +1,8 @@
-Template["afSelect2_bootstrap3"].helpers({
+/* global Template, AutoForm */
+
+Template.afSelect2_bootstrap3.helpers({
   optionAtts: function afSelectOptionAtts() {
-    var item = this
+    var item = this;
     var atts = {
       value: item.value
     };
@@ -18,11 +20,11 @@ Template["afSelect2_bootstrap3"].helpers({
   }
 });
 
-Template["afSelect2_bootstrap3"].rendered = function () {
+Template.afSelect2_bootstrap3.rendered = function () {
   // instanciate select2
   this.$('select').select2(this.data.atts.select2Options || {});
 };
 
-Template["afSelect2_bootstrap3"].destroyed = function () {
+Template.afSelect2_bootstrap3.destroyed = function () {
   this.$('select').select2('destroy');
 };
