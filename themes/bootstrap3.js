@@ -21,10 +21,21 @@ Template.afSelect2_bootstrap3.helpers({
 });
 
 Template.afSelect2_bootstrap3.rendered = function () {
-  // instanciate select2
-  this.$('select').select2(this.data.atts.select2Options || {});
-};
+  var template = this;
 
-Template.afSelect2_bootstrap3.destroyed = function () {
-  this.$('select').select2('destroy');
+  // instanciate select2
+  template.$('select').select2(template.data.atts.select2Options || {});
+
+  template.autorun(function () {
+    var data = Template.currentData();
+
+    var values = [];
+    _.each(data.items, function (item) {
+      if (item.selected) {
+        values.push(item.value);
+      }
+    });
+
+    template.$('select').select2("val", values);
+  });
 };
