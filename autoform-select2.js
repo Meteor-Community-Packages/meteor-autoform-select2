@@ -62,6 +62,8 @@ AutoForm.addInputType("select2", {
       });
     }
 
+    context.value = $("[name='" + context.atts.name + "']").val();
+
     // Add all defined options
     _.each(context.selectOptions, function(opt) {
       context.items.push({
