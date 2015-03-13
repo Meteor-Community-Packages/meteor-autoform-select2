@@ -1,24 +1,38 @@
 aldeed:autoform-select2
 =========================
 
-An add-on Meteor package for [aldeed:autoform](https://github.com/aldeed/meteor-autoform). Provides a single custom input type, "select2", which renders an input using the [select2](http://ivaynberg.github.io/select2/) plugin.
+An add-on Meteor package for [aldeed:autoform](https://github.com/aldeed/meteor-autoform). Provides a single custom input type, "select2", which renders an input using the [select2](https://select2.github.io/) plugin.
 
 ## Prerequisites
 
-The plugin library must be installed separately.
+### Select2 Library
+
+Starting with v2.0.0 of this package, you must use select2 4.0+. You can add this to `<head>`:
+
+```html
+<link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0-rc.1/css/select2.min.css" rel="stylesheet" />
+<script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0-rc.1/js/select2.min.js"></script>
+```
+
+Or get the files from GitHub and add them directly in your app /client/lib folder.
+
+### AutoForm
 
 In a Meteor app directory, enter:
 
 ```bash
-$ meteor add natestrauser:select2
 $ meteor add aldeed:autoform
 ```
+
+### Select2 Bootstrap CSS (optional)
 
 If using with bootstrap, you'll probably also want to:
 
 ```bash
 $ meteor add zimme:select2-bootstrap3-css
 ```
+
+Or add [the CSS](https://github.com/t0m/select2-bootstrap-css/blob/bootstrap3/select2-bootstrap.css) directly to your app /client folder.
 
 ## Installation
 
@@ -50,7 +64,7 @@ In the schema, which will then work with a `quickForm` or `afQuickFields`:
 
 Or on the `afFieldInput` component or any component that passes along attributes to `afFieldInput`:
 
-```js
+```html
 {{> afQuickField name="tags" type="select2" multiple=true}}
 
 {{> afFormGroup name="tags" type="select2" multiple=true}}
@@ -58,15 +72,27 @@ Or on the `afFieldInput` component or any component that passes along attributes
 {{> afFieldInput name="tags" type="select2" multiple=true}}
 ```
 
-To provide select2 options, set a `select2Options` attribute equal to a helper that returns the options object. Most of the `data-` attributes that the plugin recognizes should also work.
+## Setting Select2 Options
+
+To provide select2 options, set a `select2Options` attribute equal to a helper function that returns the options object. Most of the `data-` attributes that the plugin recognizes should also work.
+
+Example:
+
+```html
+{{> afFieldInput name="tags" type="select2" multiple=true select2Options=s2Opts}}
+```
+
+```js
+Template.example.helpers({
+  s2Opts: function () {
+    return {placeholder: 'foo', tags: true};
+  }
+});
+```
 
 ## Demo
 
 [Live](http://autoform.meteor.com/types)
-
-## Limitations
-
-Currently only `select` element features are supported. If you would like to add support for hidden `input` element features, please do so and submit a pull request.
 
 ## Contributing
 
