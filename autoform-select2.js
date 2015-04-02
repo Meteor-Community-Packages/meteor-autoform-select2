@@ -79,7 +79,9 @@ AutoForm.addInputType("select2", {
             // #each uses to track unique list items when adding and removing them
             // See https://github.com/meteor/meteor/issues/2174
             _id: subOpt.value,
-            selected: (subOpt.value === context.value),
+            selected: (_.isArray(context.value) ?
+              _.contains(context.value, subOpt.value) :
+            subOpt.value === context.value),
             atts: itemAtts
           };
         });
@@ -143,8 +145,16 @@ Template.afSelect2.rendered = function () {
 
     var values = [];
     _.each(data.items, function (item) {
-      if (item.selected) {
-        values.push(item.value);
+      if (_.has(item, 'items')) {
+        _.each(item.items, function (subItem) {
+          if (subItem.selected) {
+            values.push(subItem.value);
+          }
+        });
+      } else {
+        if (item.selected) {
+          values.push(item.value);
+        }
       }
     });
 
