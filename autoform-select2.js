@@ -67,6 +67,11 @@ AutoForm.addInputType("select2", {
       });
     }
 
+    // Check if option is selected
+    var isSelected = function(conVal, optVal) {
+      return _.isArray(conVal) ? _.contains(conVal, optVal) : optVal === conVal;
+    };
+
     // Add all defined options
     _.each(context.selectOptions, function(opt) {
       if (opt.optgroup) {
@@ -79,9 +84,7 @@ AutoForm.addInputType("select2", {
             // #each uses to track unique list items when adding and removing them
             // See https://github.com/meteor/meteor/issues/2174
             _id: subOpt.value,
-            selected: (_.isArray(context.value) ?
-              _.contains(context.value, subOpt.value) :
-            subOpt.value === context.value),
+            selected: isSelected(context.value, subOpt.value),
             atts: itemAtts
           };
         });
@@ -98,9 +101,7 @@ AutoForm.addInputType("select2", {
           // #each uses to track unique list items when adding and removing them
           // See https://github.com/meteor/meteor/issues/2174
           _id: opt.value,
-          selected: (_.isArray(context.value) ?
-                     _.contains(context.value, opt.value) :
-                     opt.value === context.value),
+          selected: isSelected(context.value, opt.value),
           atts: itemAtts
         });
       }
