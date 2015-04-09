@@ -43,29 +43,13 @@ AutoForm.addInputType("select2", {
     }
   },
   contextAdjust: function (context) {
-    //can fix issues with some browsers selecting the firstOption instead of the selected option
-    context.atts.autocomplete = "off";
-
     var itemAtts = _.omit(context.atts, 'firstOption');
-    var firstOption = context.atts.firstOption;
+
+    // NOTE: We don't add firstOption to select2 input because
+    // it doesn't make sense with the way select2 works.
 
     // build items list
     context.items = [];
-
-    // If a firstOption was provided, add that to the items list first
-    if (firstOption !== false) {
-      context.items.push({
-        name: context.name,
-        label: (typeof firstOption === "string" ? firstOption : "(Select One)"),
-        value: "",
-        // _id must be included because it is a special property that
-        // #each uses to track unique list items when adding and removing them
-        // See https://github.com/meteor/meteor/issues/2174
-        _id: "",
-        selected: false,
-        atts: itemAtts
-      });
-    }
 
     // Check if option is selected
     var isSelected = function(conVal, optVal) {
