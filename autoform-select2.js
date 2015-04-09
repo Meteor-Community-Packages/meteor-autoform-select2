@@ -143,14 +143,20 @@ Template.afSelect2.rendered = function () {
       }
     });
 
+    var $selects;
     if (values.length === 0) {
-      template.$('select option').each(function () {
-        var $this = $(this);
-        if ($this.attr('selected')) {
-          values.push($this.attr('value'));
-        }
-      });
+      $selects = template.$('select option');
+    } else {
+      // Include any that were previously added as new tags
+      $selects = template.$('select option[data-select2-tag]');
     }
+
+    $selects.each(function () {
+      var $this = $(this);
+      if ($this.attr('selected')) {
+        values.push($this.attr('value'));
+      }
+    });
 
     var currentValues = $s.val();
     if ((!currentValues && values.length > 0) ||
