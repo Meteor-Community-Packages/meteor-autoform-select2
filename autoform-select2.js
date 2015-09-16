@@ -51,6 +51,15 @@ AutoForm.addInputType("select2", {
     // build items list
     context.items = [];
 
+    // When single-select and placeholder is passed,
+    // the first option should be an empty option.
+    var multiple = itemAtts.multiple;
+    var select2Options = itemAtts.select2Options || {};
+
+    if (!multiple && select2Options.placeholder) {
+      context.items.push('');
+    }
+
     // Check if option is selected
     var isSelected = function(conVal, optVal) {
       return _.isArray(conVal) ? _.contains(conVal, optVal) : optVal === conVal;
