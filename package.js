@@ -1,5 +1,5 @@
 Package.describe({
-  name: 'cleanio:autoform-select2',
+  name: 'aldeed:autoform-select2',
   summary: 'Custom select2 input type for AutoForm',
   version: '2.0.2',
   git: 'https://github.com/aldeed/meteor-autoform-select2.git'
