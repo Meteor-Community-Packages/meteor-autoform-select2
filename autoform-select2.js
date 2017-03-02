@@ -56,6 +56,10 @@ AutoForm.addInputType("select2", {
       return _.isArray(conVal) ? _.contains(conVal, optVal) : optVal === conVal;
     };
 
+    if (context.value == ""){
+      context.value = $("[name='" + context.atts.name + "']").val() || "";
+    }
+
     // Add all defined options
     _.each(context.selectOptions, function(opt) {
       if (opt.optgroup) {
