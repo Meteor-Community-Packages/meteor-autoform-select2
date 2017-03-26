@@ -181,7 +181,7 @@ Template.afSelect2.rendered = function () {
 
 Template.afSelect2.destroyed = function () {
   try {
-    if (this.view && this.view._domrange) {
+    if (this.view && this.view._domrange && this.$('select').data('select2')) {
       this.$('select').select2('destroy');
     }
   } catch (error) {}
