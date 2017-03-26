@@ -1,9 +1,9 @@
 /* global AutoForm, _, $, Template */
 
-AutoForm.addInputType("select2", {
-  template: "afSelect2",
+AutoForm.addInputType('select2', {
+  template: 'afSelect2',
   valueConverters: {
-    "stringArray": function (val) {
+    stringArray: function (val) {
       if (_.isArray(val)) {
         return _.map(val, function (item) {
           return $.trim(item);
@@ -11,8 +11,8 @@ AutoForm.addInputType("select2", {
       }
       return val;
     },
-    "number": AutoForm.Utility.stringToNumber,
-    "numberArray": function (val) {
+    number: AutoForm.Utility.stringToNumber,
+    numberArray: function (val) {
       if (_.isArray(val)) {
         return _.map(val, function (item) {
           item = $.trim(item);
@@ -21,8 +21,8 @@ AutoForm.addInputType("select2", {
       }
       return val;
     },
-    "boolean": AutoForm.Utility.stringToBool,
-    "booleanArray": function (val) {
+    boolean: AutoForm.Utility.stringToBool,
+    booleanArray: function (val) {
       if (_.isArray(val)) {
         return _.map(val, function (item) {
           item = $.trim(item);
@@ -31,8 +31,8 @@ AutoForm.addInputType("select2", {
       }
       return val;
     },
-    "date": AutoForm.Utility.stringToDate,
-    "dateArray": function (val) {
+    date: AutoForm.Utility.stringToDate,
+    dateArray: function (val) {
       if (_.isArray(val)) {
         return _.map(val, function (item) {
           item = $.trim(item);
@@ -64,6 +64,8 @@ AutoForm.addInputType("select2", {
     var isSelected = function(conVal, optVal) {
       return _.isArray(conVal) ? _.contains(conVal, optVal) : optVal === conVal;
     };
+
+    console.log(context);
 
     // Add all defined options
     _.each(context.selectOptions, function(opt) {
@@ -127,7 +129,7 @@ Template.afSelect2.events({
   }
 });
 
-Template.afSelect2.rendered = function () {
+Template.afSelect2.onRendered(function () {
   var template = this;
   var $s = template.$('select');
 
@@ -177,15 +179,15 @@ Template.afSelect2.rendered = function () {
       $s.val(values).trigger('change');
     }
   });
-};
+});
 
-Template.afSelect2.destroyed = function () {
+Template.afSelect2.onDestroyed(function () {
   try {
     if (this.view && this.view._domrange && this.$('select').data('select2')) {
       this.$('select').select2('destroy');
     }
   } catch (error) {}
-};
+});
 
 /*
  *  BOOTSTRAP THEME
@@ -198,7 +200,7 @@ Template.afSelect2_bootstrap3.helpers({
   atts: function addFormControlAtts() {
     var atts = _.omit(this.atts, 'select2Options');
     // Add bootstrap class
-    atts = AutoForm.Utility.addClass(atts, "form-control");
+    atts = AutoForm.Utility.addClass(atts, 'form-control');
     return atts;
   }
 });

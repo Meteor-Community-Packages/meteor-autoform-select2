@@ -7,14 +7,35 @@ An add-on Meteor package for [aldeed:autoform](https://github.com/aldeed/meteor-
 
 ### Select2 Library
 
-Starting with v2.0.0 of this package, you must use select2 4.0+. You can add this to `<head>`:
+You must use select2 4.0+.
+
+Option 1:
+
+Add this to `<head>`:
 
 ```html
-<link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0-rc.1/css/select2.min.css" rel="stylesheet" />
-<script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0-rc.1/js/select2.min.js"></script>
+<link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+<script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
 ```
 
-Or get the files from GitHub and add them directly in your app /client/lib folder.
+Option 2:
+
+Install the NPM package (and its jQuery dependency):
+
+```js
+$ meteor npm i --save jquery select2
+```
+
+Then in your `client/main.js`:
+
+```js
+import 'select2';
+import 'select2/dist/css/select2.css';
+```
+
+Option 3:
+
+Get the files from GitHub and add them directly in your app /client/lib folder.
 
 ### AutoForm
 
@@ -26,13 +47,19 @@ $ meteor add aldeed:autoform
 
 ### Select2 Bootstrap CSS (optional)
 
-If using with bootstrap, you'll probably also want to:
+If using with Bootstrap, you can add the theme.
 
 ```bash
-$ meteor add zimme:select2-bootstrap3-css
+$ meteor npm i --save select2-bootstrap-theme
 ```
 
-Or add [the CSS](https://github.com/t0m/select2-bootstrap-css/blob/bootstrap3/select2-bootstrap.css) directly to your app /client folder.
+And add an additional import AFTER the other two in your `client/main.js`:
+
+```js
+import 'select2';
+import 'select2/dist/css/select2.css';
+import 'select2-bootstrap-theme/dist/select2-bootstrap.css';
+```
 
 ## Installation
 
@@ -51,14 +78,15 @@ In the schema, which will then work with a `quickForm` or `afQuickFields`:
 ```js
 {
   tags: {
-    type: [String],
+    type: Array,
     autoform: {
-      type: "select2",
+      type: 'select2',
       afFieldInput: {
         multiple: true
       }
     }
-  }
+  },
+  'tags.$': String
 }
 ```
 
@@ -84,9 +112,9 @@ Example:
 
 ```js
 Template.example.helpers({
-  s2Opts: function () {
-    return {placeholder: 'foo', tags: true};
-  }
+  s2Opts() {
+    return { placeholder: 'foo', tags: true };
+  },
 });
 ```
 
@@ -97,5 +125,3 @@ Template.example.helpers({
 ## Contributing
 
 Anyone is welcome to contribute. Fork, make your changes, and then submit a pull request.
-
-[![Support via Gratipay](https://cdn.rawgit.com/gratipay/gratipay-badge/2.1.3/dist/gratipay.png)](https://gratipay.com/aldeed/)
