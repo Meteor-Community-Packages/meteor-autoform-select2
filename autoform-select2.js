@@ -62,7 +62,7 @@ AutoForm.addInputType('select2', {
 
     // Check if option is selected
     var isSelected = function(conVal, optVal) {
-      return _.isArray(conVal) ? _.contains(conVal, optVal) : optVal === conVal;
+      return _.isArray(conVal) ? _.includes(conVal, optVal) : optVal === conVal;
     };
 
     console.log(context);
