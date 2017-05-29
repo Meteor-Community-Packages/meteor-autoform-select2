@@ -65,8 +65,6 @@ AutoForm.addInputType('select2', {
       return _.isArray(conVal) ? _.contains(conVal, optVal) : optVal === conVal;
     };
 
-    console.log(context);
-
     // Add all defined options
     _.each(context.selectOptions, function(opt) {
       if (opt.optgroup) {
