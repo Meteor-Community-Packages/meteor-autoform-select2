@@ -126,17 +126,12 @@ Template.afSelect2.events({
 Template.afSelect2.onRendered(function () {
   const template = this
   const $s = template.$('select')
-
-  console.debug(window.$)
-  console.debug(window.jQuery)
-  console.debug(window.jquery)
-  // instanciate select2
   $s.select2(template.data.atts.select2Options || {})
 
   template.autorun(function () {
     const data = Template.currentData()
-
     const values = []
+
     data.items.forEach(item => {
       if (Object.hasOwnProperty.call(item, 'items')) {
         item.items.forEach(subItem => {
@@ -165,15 +160,19 @@ Template.afSelect2.onRendered(function () {
         values.push($this.attr('value'))
       }
     })
-
     const currentValues = $s.val()
+
     if ((!currentValues && values.length > 0) ||
       (currentValues && currentValues.toString() !== values.toString())) {
       // select2 requires that we trigger change event
       // for it to realize it needs to update the select2 list.
       // We do it only if values have actually changed,
       // which should help prevent autosave infinite looping.
-      $s.val(values).trigger('change')
+      $s.val(values)
+
+      // sometimes the change event is not captured immediately, so we use
+      // a short timeout to ensure it, otherwise selected values may not show up
+      setTimeout(() => $s.trigger('change'), 50)
     }
   })
 })
