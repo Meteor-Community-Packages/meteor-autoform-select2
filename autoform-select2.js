@@ -167,15 +167,11 @@ Template.afSelect2.onRendered(function () {
       }
     });
 
-    var currentValues = $s.val();
-    if ((!currentValues && values.length > 0) ||
-        (currentValues && currentValues.toString() !== values.toString())) {
-      // select2 requires that we trigger change event
-      // for it to realize it needs to update the select2 list.
-      // We do it only if values have actually changed,
-      // which should help prevent autosave infinite looping.
-      $s.val(values).trigger('change');
-    }
+		// Using select2' "scoped change" event
+		// to avoid autosubmit when in an autosave form
+		// https://select2.org/programmatic-control/events#limiting-the-scope-of-the-change-event
+		$s.val(values).trigger('change.select2');
+
   });
 });
 
