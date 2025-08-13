@@ -185,18 +185,3 @@ Template.afSelect2.onDestroyed(function () {
     }
   } catch (error) {}
 })
-
-/*
- *  BOOTSTRAP THEME
- */
-
-Template.afSelect2.copyAs('afSelect2_bootstrap4')
-
-// The only difference is that we need to add "form-control" class
-Template.afSelect2_bootstrap4.helpers({
-  atts: function addFormControlAtts () {
-    const { select2Options, ...rest } = this.atts
-    // Add bootstrap class
-    return AutoForm.Utility.addClass(rest, 'form-control')
-  }
-})

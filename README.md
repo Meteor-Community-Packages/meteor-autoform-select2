@@ -1,5 +1,4 @@
-aldeed:autoform-select2
-=========================
+# aldeed:autoform-select2
 
 An add-on Meteor package for [aldeed:autoform](https://github.com/aldeed/meteor-autoform). Provides a single custom input type, "select2", which renders an input using the [select2](https://select2.github.io/) plugin.
 
@@ -9,7 +8,7 @@ An add-on Meteor package for [aldeed:autoform](https://github.com/aldeed/meteor-
 
 You must use select2 4.0+.
 
-Option 1:
+#### Option 1:
 
 Add this to `<head>`:
 
@@ -18,7 +17,7 @@ Add this to `<head>`:
 <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
 ```
 
-Option 2:
+#### Option 2:
 
 Install the NPM package (and its jQuery dependency):
 
@@ -33,7 +32,7 @@ import 'select2';
 import 'select2/dist/css/select2.css';
 ```
 
-Option 3:
+#### Option 3:
 
 Get the files from GitHub and add them directly in your app /client/lib folder.
 
@@ -68,6 +67,40 @@ In a Meteor app directory, enter:
 ```bash
 $ meteor add aldeed:autoform-select2
 ```
+
+You can import this library dynamically or statically.
+
+Dynamically, in your `client/main.js`:
+
+```js
+import { AutoFormSelect2 } from 'meteor/aldeed:autoform-select2';
+// ...
+await AutoFormSelect2.load()
+```
+
+Or statically, in your `client/main.js`:
+
+```js
+import 'meteor/aldeed:autoform-select2/static';
+```
+
+### Installing Bootstrap theme
+
+As of version 4.x there is no tight coupling to Bootstrap themes anymore.
+If you want to use the Bootstrap theme, you can install create use the following code:
+
+```js
+const from = Template.afSelect2
+from.helpers({
+  atts: function addFormControlAtts () {
+    const { select2Options, ...rest } = this.atts
+    // Add bootstrap class
+    return AutoForm.Utility.addClass(rest, 'form-control')
+  }
+})
+```
+
+
 
 ## Usage
 
