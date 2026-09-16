@@ -32,9 +32,37 @@ import 'select2';
 import 'select2/dist/css/select2.css';
 ```
 
+
+
 #### Option 3:
 
 Get the files from GitHub and add them directly in your app /client/lib folder.
+
+
+#### Troubleshooting
+
+If you get `$.select2 is not a function` then [you'll likely have
+to initialize select2 on import](https://github.com/select2/select2/issues/6081#issuecomment-1043871398):
+
+```js
+import initSelect2 from 'select2';
+initSelect2();
+```
+
+If you use `select2` < 4.1.0 you will get issues with jQuery4, which
+deprecated a few functions. For this you can either update to select2 >= 4.1.0
+or shim the jquery functions via:
+
+```js
+jQuery.isArray = Array.isArray;
+jQuery.trim = (text) => {
+  return text == null ? "" : text.trim();
+};
+```
+
+
+
+For more troubleshooting read the select2 docs: https://select2.org/troubleshooting/common-problems/
 
 ### AutoForm
 
