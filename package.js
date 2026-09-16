@@ -1,7 +1,7 @@
 /* eslint-env meteor */
 Package.describe({
   name: 'aldeed:autoform-select2',
-  version: '4.0.0-rc.0',
+  version: '4.0.0',
   summary: 'Custom select2 input type for AutoForm',
   git: 'https://github.com/aldeed/meteor-autoform-select2.git'
 })
